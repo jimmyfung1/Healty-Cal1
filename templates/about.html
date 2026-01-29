@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - HealthyCal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/HomeLogin.css') }}">
+    <style>
+        /* Ensure the map takes up the desired space */
+        #map {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">HealthyCal</div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            {% if 'user_id' in session %}
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>About HealthyCal</h2>
+        <p>HealthyCal is dedicated to helping you achieve your health and fitness goals through personalized nutrition plans, tracking tools, and a vast collection of healthy recipes.</p>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        window.onload = function () {
+            // Check if the browser supports Geolocation API
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude;
+                    var lon = position.coords.longitude;
+    
+                    // Initialize the map without marking the user's location
+                    showMap(lat, lon);
+                });
+            } else {
+                alert('Your browser does not support Geolocation.');
+            }
+        };
+    
+        // Show the map and add markers for predefined locations only
+        function showMap(lat, lon) {
+            // Default center point for the map
+            var myLatLng = new google.maps.LatLng(13.775827593700182, 100.57861173066335);
+    
+            // Map options
+            var mapOptions = {
+                zoom: 8,
+                center: myLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+    
+            // Create the map
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    
+            // Define additional locations with descriptions
+            var locations = [
+                {
+                    lat: 13.775827593700182,
+                    lng: 100.57861173066335,
+                    title: 'Srinakharinwirot University',
+                    description: 'Web Programming.'
+                }
+            ];
+    
+            // Track the currently open InfoWindow
+            var currentInfoWindow = null;
+    
+            // Add markers for the predefined locations
+            locations.forEach(function (location) {
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(location.lat, location.lng),
+                    map: map,
+                    title: location.title
+                });
+    
+                // Create an InfoWindow for each location
+                var infoWindow = new google.maps.InfoWindow({
+                    content: `<h2>${location.title}</h2><p>${location.description}</p>`
+                });
+    
+                // Add a click event listener to open the InfoWindow
+                marker.addListener('click', function () {
+                    if (currentInfoWindow) {
+                        currentInfoWindow.close();
+                    }
+                    infoWindow.open(map, marker);
+                    currentInfoWindow = infoWindow;
+                });
+            });
+        }
+    </script>
+    
+</body>
+</html>

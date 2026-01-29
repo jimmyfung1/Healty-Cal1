@@ -1,0 +1,170 @@
+/* General Styles */
+body {
+   font-family: 'Lora', serif;
+   background-color: #e8f5e9;
+   margin: 0;
+   padding: 0;
+}
+
+/* Navigation Bar */
+nav {
+   background-color: #4caf50;
+   padding: 10px 20px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.nav-links a {
+   margin: 0 15px;
+   color: #ffffff;
+   text-decoration: none;
+   font-weight: bold;
+}
+
+.menu-icon {
+   display: none;
+   font-size: 24px;
+   cursor: pointer;
+   color: white;
+}
+
+.nav-links {
+   display: flex;
+}
+
+@media (max-width: 768px) {
+   .menu-icon {
+       display: block;
+   }
+
+   .nav-links {
+       display: none;
+       flex-direction: column;
+       position: absolute;
+       top: 50px;
+       right: 20px;
+       background-color: #4caf50;
+       padding: 10px;
+       border-radius: 5px;
+   }
+
+   .nav-links.active {
+       display: flex;
+   }
+}
+
+/* Hero Section */
+.hero {
+   background-image: url("image/food_black.jpeg");
+   background-size: cover;
+   background-position: center;
+   text-align: center;
+   padding: 50px 20px;
+   color: white;
+   animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero h1 {
+   font-family: 'Playfair Display', serif;
+}
+
+.hero button {
+   background-color: #388e3c;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   padding: 15px 30px;
+   font-size: 16px;
+   cursor: pointer;
+   transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.hero button:hover {
+   background-color: #2e7d32;
+   transform: scale(1.05);
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero button:active {
+   transform: scale(0.95);
+}
+
+/* Services Section */
+.services {
+   padding: 20px;
+   text-align: center;
+}
+
+.service-cards {
+   display: flex;
+   justify-content: space-around;
+   flex-wrap: wrap;
+}
+
+.card {
+   background-color: #ffffff;
+   border-radius: 8px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   padding: 20px;
+   margin: 10px;
+   width: calc(33% - 40px);
+   text-align: left;
+}
+
+@media (max-width: 768px) {
+   .service-cards {
+       flex-direction: column;
+       align-items: center;
+   }
+
+   .card {
+       width: 80%;
+   }
+}
+
+/* Testimonials Section */
+.carousel {
+   display: flex;
+   overflow-x: auto;
+   scroll-snap-type: x mandatory;
+   gap: 20px;
+   padding: 10px;
+}
+
+.testimonial {
+   flex: 0 0 80%;
+   scroll-snap-align: start;
+   background: white;
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+   text-align: center;
+   padding: 10px;
+   background-color: #4caf50;
+   color: white;
+}
+
+footer div a {
+   color: white;
+   margin: 0 5px;
+   text-decoration: none;
+}
+
+footer div a:hover {
+   text-decoration: underline;
+}
+
+/* Keyframes for Hero Section Animation */
+@keyframes fadeIn {
+   from {
+       opacity: 0;
+   }
+   to {
+       opacity: 1;
+   }
+}

@@ -1,0 +1,199 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ฟอนต์หลัก */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #eafaf1;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #28a745;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+    color: #d4f5dd;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #28a745;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+    }
+
+    .navbar .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* Main Container */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d4f5dd;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 32px;
+    color: #2d6a4f;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Menu List */
+.menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Menu Card */
+.menu-card {
+    background-color: #f8fff9;
+    border: 2px solid #b7e4c7;
+    border-radius: 15px;
+    width: 250px;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.menu-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.menu-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.menu-card:hover .menu-image {
+    transform: scale(1.05);
+}
+
+.menu-card h3 {
+    font-size: 22px;
+    color: #40916c;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.menu-card p {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #28a745;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 60px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+/* Button Styles */
+button {
+    background-color: #52b788;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #40916c;
+}
+
+/* Additional Styles for Better Aesthetics */
+.menu-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(40, 167, 69, 0.1));
+    z-index: -1;
+    border-radius: 15px;
+}
+
+.menu-card a:hover h3 {
+    color: #2d6a4f;
+}

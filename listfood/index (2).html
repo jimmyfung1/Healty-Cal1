@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เมนูอาหาร - HealthyCal</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- ใช้ Google Fonts สำหรับฟอนต์เพิ่มเติม -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- ใช้ Font Awesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrQdP2cGttFLgk7ewyYBQj3x3xX4nI+XfVYQWdfNc9h0XG+n1vq6E0W7+KgHl3w+Jm3A0+SmXx8+VM4wAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">HealthyCal</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">เมนูอาหาร</h1>
+        <div id="menu-list" class="menu-list"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 HealthyCal. All Rights Reserved.
+    </footer>
+
+    <!-- JavaScript สำหรับ Responsive Navbar และการดึงข้อมูลเมนู -->
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // ดึงข้อมูลจาก menu.json
+        fetch('menu.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const menuList = document.getElementById('menu-list');
+                data.forEach(menu => {
+                    // ตรวจสอบและจัดการกับข้อมูลที่อาจจะขาดหายไป
+                    const menuName = menu.name || 'ไม่มีชื่อเมนู';
+                    const menuDescription = menu.description || 'ไม่มีรายละเอียด';
+                    const menuImage = menu.image || 'images/default.jpg'; // ใช้รูปภาพเริ่มต้นหากไม่มี
+
+                    // สร้างลิงก์สำหรับแต่ละเมนู
+                    const menuCard = document.createElement('div');
+                    menuCard.className = 'menu-card';
+                    menuCard.innerHTML = `
+                        <a href="menu-detail.html?id=${menu.id}">
+                            <img src="${menuImage}" alt="${menuName}" class="menu-image">
+                            <h3>${menuName}</h3>
+                            <p>${menuDescription}</p>
+                        </a>
+                    `;
+                    menuList.appendChild(menuCard);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching menu:', error);
+                const menuList = document.getElementById('menu-list');
+                menuList.innerHTML = '<p>ไม่สามารถโหลดเมนูอาหารได้ กรุณาลองใหม่ภายหลัง</p>';
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("image/image.webp");
+    background-size: cover;  /* Ensure the background image covers the whole screen */
+    background-position: center;
+    color: #333;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;  /* Ensure it’s responsive */
+    text-align: center;
+    box-sizing: border-box;  /* Prevents padding from affecting width */
+}
+
+/* Title */
+h1 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Input Fields */
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focused State for Inputs */
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+}
+
+/* Submit Button */
+.login-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #45a049;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.forgot-password a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* Flash Messages */
+.flash-messages {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.flash-message.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .login-btn {
+        font-size: 14px;
+    }
+
+    .forgot-password a {
+        font-size: 12px;
+    }
+}

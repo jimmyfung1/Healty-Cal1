@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดเมนู</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="menu-title"></h1>
+        <img id="menu-image" class="menu-image" alt="">
+        <h3>ส่วนผสม</h3>
+        <ul id="menu-ingredients"></ul>
+        <h3>วิธีทำ</h3>
+        <ol id="menu-instructions"></ol>
+
+        <!-- ข้อมูลทางโภชนาการ -->
+        <h3>ข้อมูลทางโภชนาการ</h3>
+        <p><strong>แคลอรี่:</strong> <span id="menu-calories"></span></p>
+        <p><strong>โปรตีน:</strong> <span id="menu-protein"></span></p>
+        <p><strong>คาร์โบไฮเดรต:</strong> <span id="menu-carbohydrates"></span></p>
+        <p><strong>ไขมัน:</strong> <span id="menu-fat"></span></p>
+        <p><strong>โซเดียม:</strong> <span id="menu-sodium"></span></p>
+    </div>
+
+    <script>
+        // รับค่า id จาก URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const menuId = parseInt(urlParams.get('id'));
+
+        // ดึงข้อมูลจาก menu.json
+        fetch('menu.json')
+            .then(response => response.json())
+            .then(data => {
+                const menu = data.find(m => m.id === menuId);
+                if (menu) {
+                    document.getElementById('menu-title').textContent = menu.name;
+                    document.getElementById('menu-image').src = menu.image;
+                    document.getElementById('menu-image').alt = menu.name;
+
+                    // ส่วนผสม
+                    const ingredientsList = document.getElementById('menu-ingredients');
+                    menu.ingredients.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item;
+                        ingredientsList.appendChild(li);
+                    });
+
+                    // วิธีทำ
+                    const instructionsList = document.getElementById('menu-instructions');
+                    menu.instructions.forEach(step => {
+                        const li = document.createElement('li');
+                        li.textContent = step;
+                        instructionsList.appendChild(li);
+                    });
+
+                    // ข้อมูลทางโภชนาการ
+                    document.getElementById('menu-calories').textContent = menu.calories;
+                    document.getElementById('menu-protein').textContent = menu.protein;
+                    document.getElementById('menu-carbohydrates').textContent = menu.carbohydrates;
+                    document.getElementById('menu-fat').textContent = menu.fat;
+                    document.getElementById('menu-sodium').textContent = menu.sodium;
+                } else {
+                    document.body.innerHTML = '<h1>เมนูไม่พบ</h1>';
+                }
+            });
+    </script>
+</body>
+</html>

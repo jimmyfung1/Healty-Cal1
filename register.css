@@ -1,0 +1,146 @@
+/* พื้นหลังและฟอนต์โดยรวม */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom right, #e0e0e0, #ffffff);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+/* กล่องฟอร์มลงทะเบียน */
+.register-container {
+    background: rgba(255, 255, 255, 0.95); /* เพิ่มความโปร่งใสเล็กน้อยสำหรับความอ่านง่าย */
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* เพิ่มความเข้มของเงาเมื่อ hover */
+}
+
+/* หัวข้อ */
+.register-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #4CAF50; /* สีเขียวหรูหรา */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ป้ายกำกับฟิลด์ */
+.register-container label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+}
+
+/* ช่องกรอกข้อมูล */
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"],
+.register-container input[type="number"],
+.register-container select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    box-sizing: border-box; /* เพื่อให้ padding และ border รวมอยู่ในความกว้าง */
+}
+
+.register-container input::placeholder,
+.register-container select::placeholder {
+    color: #aaa;
+    opacity: 1; /* สำหรับ Firefox */
+}
+
+.register-container input:focus,
+.register-container select:focus {
+    border-color: #4CAF50;
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(76,175,80,0.2);
+}
+
+/* ปุ่มส่งข้อมูล */
+.register-container button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #4CAF50, #6CCF6E);
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+}
+
+.register-container button:hover {
+    background: linear-gradient(135deg, #6CCF6E, #4CAF50);
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.register-container button:active {
+    background: #388e3c;
+    transform: scale(1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ลิงก์เข้าสู่ระบบ */
+.register-container p {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.register-container p a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.register-container p a:hover {
+    color: #388e3c;
+    text-decoration: underline;
+}
+
+/* รองรับหน้าจอเล็ก */
+@media (max-width: 500px) {
+    .register-container {
+        padding: 30px 20px;
+    }
+
+    .register-container h1 {
+        font-size: 28px;
+    }
+
+    .register-container button {
+        font-size: 16px;
+    }
+}

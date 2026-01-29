@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthyCal - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Homepage.css') }}">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">HealthyCal</div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="nav-links" id="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('menu_food') }}">MenuFood</a>
+            {% if 'user_id' in session %}
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('register') }}">Register</a>
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to HealthyCal</h1>
+        <p>Your Journey to a Healthier Life Starts Here</p>
+        <button onclick="window.location.href='{{ url_for('register') }}'">Get Started</button>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service-cards">
+            <div class="card">
+                <h3>Personalized Nutrition Plans</h3>
+                <p>Get customized meal plans based on your dietary preferences and health goals.</p>
+            </div>
+            <div class="card">
+                <h3>Track Your Progress</h3>
+                <p>Monitor your nutrition and health progress with our easy-to-use tools.</p>
+            </div>
+            <div class="card">
+                <h3>Healthy Recipes</h3>
+                <p>Explore a wide range of nutritious recipes to keep you inspired in the kitchen.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 HealthyCal. All Rights Reserved.
+    </footer>
+</body>
+</html>
